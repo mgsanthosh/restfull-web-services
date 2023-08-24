@@ -5,8 +5,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: book-store-database
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_USER: newusername
+      MYSQL_PASSWORD: password
     ports:
       - "3307:3306"
     volumes:
