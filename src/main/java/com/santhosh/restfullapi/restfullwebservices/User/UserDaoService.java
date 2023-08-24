@@ -25,14 +25,14 @@ public class UserDaoService {
         return userRepository.findAll();
     }
 
-    public boolean checkForAuthentication(String userName, String password) {
+    public int checkForAuthentication(String userName, String password) {
         users = getAllUsers();
         for(User user: users) {
             if(user.getUsername().equals(userName) && user.getPassword().equals(password)) {
-                return true;
+                return user.getId();
             }
         }
-        return false;
+        return -1;
     }
 
     public void addUser(User user) {

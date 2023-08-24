@@ -21,7 +21,7 @@ public class UserResource {
     }
 
     @GetMapping(path = "/auth/{userName}/{password}")
-    public boolean isAuthenticated(@PathVariable String userName, @PathVariable String password) {
+    public int isAuthenticated(@PathVariable String userName, @PathVariable String password) {
         return userDaoService.checkForAuthentication(userName, password);
     }
 
