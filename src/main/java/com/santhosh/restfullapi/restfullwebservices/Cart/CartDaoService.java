@@ -19,8 +19,8 @@ public class CartDaoService {
 
     private static String GET_CARTDATA =
             """
-                SELECT c.user_id, p.product_name, p.product_price, p.product_image from user_cart c
-                JOIN product_details p ON c.product_id = p.id where c.user_id = ?;
+                SELECT c.id c.user_id, p.product_name, p.product_price, p.product_image from user_cart c
+                JOIN product_details p ON c.product_id = p.id where c.user_id = ? AND c.is_bought = 0;
             """;
 
 
@@ -38,5 +38,10 @@ public class CartDaoService {
         List<Map<String, Object>> allCartData = new ArrayList<>();
         allCartData = cartJdbcTemplate.queryForList(GET_CARTDATA, userId);
         return allCartData;
+    }
+
+    public boolean checkoutCart(Map<String, Object> requestBody) {
+
+        return true;
     }
 }
