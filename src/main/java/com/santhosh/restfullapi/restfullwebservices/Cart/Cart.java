@@ -9,9 +9,11 @@ public class Cart {
     @Id
     @GeneratedValue
     private Integer id;
-    private String productId;
+    private Integer productId;
 
     private Integer isBought;
+
+    private Integer userId;
 
     public Integer getId() {
         return id;
@@ -21,11 +23,11 @@ public class Cart {
         this.id = id;
     }
 
-    public String getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
@@ -37,10 +39,19 @@ public class Cart {
         this.isBought = isBought;
     }
 
-    public Cart(Integer id, String productId, Integer isBought) {
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Cart(Integer id, Integer productId, Integer isBought, Integer userId) {
         this.id = id;
         this.productId = productId;
         this.isBought = isBought;
+        this.userId = userId;
     }
 
     public Cart() {}
