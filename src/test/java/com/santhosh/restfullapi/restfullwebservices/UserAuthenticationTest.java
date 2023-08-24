@@ -17,18 +17,24 @@ public class UserAuthenticationTest {
     @Autowired
     private UserDaoService userDaoService;
 
-//    @Test
-//    void testAddUser() {
-//        User newUser = new User(5, "NewUser", "newpassword");
-//        userDaoService.addUser(newUser);
-//        List<User> allUsers = userDaoService.getAllUsers();
-//        assertTrue(allUsers.contains(newUser));
-//    }
+    @Test
+    void testAddUser() {
+        User user = new User();
+        user.setUsername("testuser");
+        user.setPassword("test");
+        userDaoService.addUser(user);
+        List<User> allUsers = userDaoService.getAllUsers();
+        System.out.println("THE USER");
+        System.out.println(allUsers);
+        System.out.println(allUsers.contains(user));
+//        assertTrue(allUsers.contains(user));
 
-//    @Test
-//    void testAuthentication() {
-//        assertTrue(userDaoService.checkForAuthentication("Santhosh", "abcd@123"));
-//        assertFalse(userDaoService.checkForAuthentication("alice", "wrongpass"));
-//        assertFalse(userDaoService.checkForAuthentication("eve", "hackme"));
-//    }
+    }
+
+    @Test
+    void testAuthentication() {
+        assertTrue(userDaoService.checkForAuthentication("santhosh", "abcd"));
+        assertFalse(userDaoService.checkForAuthentication("alice", "wrongpass"));
+        assertFalse(userDaoService.checkForAuthentication("eve", "hackme"));
+    }
 }
