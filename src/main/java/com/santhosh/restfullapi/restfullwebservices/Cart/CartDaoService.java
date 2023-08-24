@@ -23,6 +23,11 @@ public class CartDaoService {
                 JOIN product_details p ON c.product_id = p.id where c.user_id = ? AND c.is_bought = 0;
             """;
 
+    private static String UPDATE_IS_BOUGHT =
+            """
+               UPDATE user_cart SET is_bought = 1 WHERE (id = ?);
+            """;
+
 
 
     public boolean addToCart(Integer prdId, Integer userId) {
@@ -41,6 +46,10 @@ public class CartDaoService {
     }
 
     public boolean checkoutCart(Map<String, Object> requestBody) {
+        List<Integer> ids = (List<Integer>) requestBody.get("cartIds");
+        for (int i: ids) {
+            cartJdbcTemplate.update(UPDATE_IS_BOUGHT, i);
+        }
 
         return true;
     }
