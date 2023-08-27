@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class UserResource {
 
     private UserDaoService userDaoService;
