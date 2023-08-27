@@ -27,8 +27,8 @@ public class UserResource {
     }
 
     @PostMapping(path = "/addUser")
-    public void createUser(@RequestBody User user) {
-        userDaoService.addUser(user);
+    public boolean createUser(@RequestBody User user) {
+        return userDaoService.addUser(user);
     }
 
 }

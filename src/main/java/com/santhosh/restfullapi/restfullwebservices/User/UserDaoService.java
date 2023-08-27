@@ -35,8 +35,13 @@ public class UserDaoService {
         return -1;
     }
 
-    public void addUser(User user) {
-        userRepository.save(user);
+    public boolean addUser(User user) {
+        if(checkForAuthentication(user.getUsername(), user.getPassword()) == -1) {
+            userRepository.save(user);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

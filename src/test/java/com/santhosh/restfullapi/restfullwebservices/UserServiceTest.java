@@ -1,7 +1,7 @@
 package com.santhosh.restfullapi.restfullwebservices;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,40 @@ public class UserServiceTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
+    }
+
+    private List<User> testUsers;
+
+    @BeforeEach
+    public void setUp1() {
+        testUsers = new ArrayList<>();
+        testUsers.add(new User(1, "existingUser", "password123"));
+        testUsers.add(new User(2, "anotherUser", "pass456"));
+    }
+
+    @Test
+    public void testGetAllUsers() {
+        when(userRepository.findAll()).thenReturn(testUsers);
+
+        List<User> result = userService.getAllUsers();
+
+        assertEquals(testUsers, result);
+    }
+
+    @Test
+    public void testAddUser_NewUser_Success() {
+        User newUser = new User(1, "newUser", "newPassword");
+        boolean adding = userService.addUser(newUser);
+        assertTrue(adding);
+    }
+
+    @Test
+    public void testAddUser_ExistingUser_Failure() {
+        when(userRepository.findAll()).thenReturn(testUsers);
+        User existingUser = new User(1, "existingUser", "password123");
+        boolean adding = userService.addUser(existingUser);
+        assertFalse(adding);
+
     }
 
     @Test
