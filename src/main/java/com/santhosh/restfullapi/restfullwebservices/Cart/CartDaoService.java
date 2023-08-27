@@ -19,7 +19,7 @@ public class CartDaoService {
 
     public static final String GET_CARTDATA =
             """
-                SELECT c.id c.user_id, p.product_name, p.product_price, p.product_image from user_cart c
+                SELECT c.id, c.user_id, p.product_name, p.product_price, p.product_image from user_cart c
                 JOIN product_details p ON c.product_id = p.id where c.user_id = ? AND c.is_bought = 0;
             """;
 
